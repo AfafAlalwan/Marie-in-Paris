@@ -12,6 +12,15 @@ public class MarieController : MonoBehaviour
     public float RunningSpeed = 1f, JumpForce = 5f;
     public HealthBar HP;
     public Transform Paws;
+    //Animation code
+    public Animator animator;
+    //Weapon Code
+    public Transform BaguettePos;
+    public float fBaguetteRange = 0.5f;
+    public float fsmackRate = 3f;
+    float fnextSmack = 0f;
+    // Code to determine what to hit
+    public LayerMask Enemies; // you set the enemies into this layer if there is no layer just create one with same name.
 
     void Start()
     {
@@ -28,6 +37,17 @@ public class MarieController : MonoBehaviour
     {
         MoveMarie();
         CheckPoint();
+
+        //Ýf you press left mouse button it should attack with this code
+        if (Time.time >= fnextSmack)
+        {
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                Baguattack();
+                fnextSmack = Time.time + 1f / fsmackRate;
+            }
+        }
     }
 
     void MoveMarie()
@@ -72,10 +92,35 @@ public class MarieController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag == "Car")
+        if (other.gameObject.tag == "Car")
         {
             HP.ReduceHealth(100);
             Destroy(other.gameObject);
         }
+    }
+
+    //Player Attacking Code
+    void Baguattack()
+    {
+        //Animation will be added here
+        // ( Code for animation not of use yet) animator.SetTrigger("Baguattack"); 
+
+        //Attack Range
+        Collider2D[] smack = Physics2D.OverlapCircleAll(BaguettePos.position, fBaguetteRange, Enemies); // specific code for checking what to collide. We can use layers so attack only collides with enemy layers. Basicaly Marie chooses what to smack
+
+        //Damage
+        foreach (Collider2D enemy in smack) //it will smack each person that is count as enemy in the reach parameter we made in attack range section
+        {
+            enemy.GetComponent<Kitties>().GetSmacked(25); //change getsmacked to change dmg number. Kitties are enemy cats.
+        }
+    }
+
+    //I'm using this to determine range so ý can see the spehere on scene
+    private void OnDrawGizmosSelected()
+    {
+        if (BaguettePos == null)
+            return;
+
+        Gizmos.DrawWireSphere(BaguettePos.position, fBaguetteRange);
     }
 }

@@ -123,6 +123,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &116296758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 116296759}
+  m_Layer: 0
+  m_Name: Baguette
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &116296759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116296758}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.3, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 865162523}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &166920063
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,7 +496,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000019073486}
+  m_AnchoredPosition: {x: 0, y: 0.000015258789}
   m_SizeDelta: {x: 100, y: 17.830002}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &422942341
@@ -632,7 +662,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.28352118, y: -2.8, z: -10}
+  m_LocalPosition: {x: 0.96879053, y: -2.8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 952057204}
@@ -959,6 +989,7 @@ Transform:
   m_LocalScale: {x: 0.2505093, y: 0.24746582, z: 1}
   m_Children:
   - {fileID: 1380538747}
+  - {fileID: 116296759}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -978,6 +1009,13 @@ MonoBehaviour:
   JumpForce: 10
   HP: {fileID: 1574871026}
   Paws: {fileID: 1380538747}
+  animator: {fileID: 0}
+  BaguettePos: {fileID: 116296759}
+  fBaguetteRange: 1
+  fsmackRate: 3
+  Enemies:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &952057203
 GameObject:
   m_ObjectHideFlags: 0
@@ -1412,7 +1450,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -281.59998, y: 168.48497}
+  m_AnchoredPosition: {x: -281.5999, y: 168.48497}
   m_SizeDelta: {x: -611.60004, y: -372.96997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1574871026
