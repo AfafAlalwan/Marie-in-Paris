@@ -10,6 +10,7 @@ TagManager:
   - gameMaster
   - End
   - Car
+  - Kitty
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - UI
   - Ground
   - CheckPoint
-  - 
+  - Enemy
   - 
   - 
   - 

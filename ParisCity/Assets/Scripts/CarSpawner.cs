@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class CarSpawner : MonoBehaviour
 {
-    public GameObject car , clone;
+    //objects to spawn
+    public GameObject [] spawnObject;
+    int spawnObjectIndex;
+    GameObject randPrefab, clone;
+    
+    //spawning time
     public float spawnRate = 2f;
     float nextSpawn = 0.0f;
     // Start is called before the first frame update
@@ -19,7 +24,10 @@ public class CarSpawner : MonoBehaviour
         if(Time.time > nextSpawn)
         {
             nextSpawn = Time.time + spawnRate;
-            Instantiate(car, transform.position, Quaternion.identity);
+
+            spawnObjectIndex = Random.Range(0, spawnObject.Length);
+            randPrefab = spawnObject[spawnObjectIndex];
+            clone =  GameObject.Instantiate(randPrefab, transform.position, Quaternion.identity) as GameObject;
         }
 
             

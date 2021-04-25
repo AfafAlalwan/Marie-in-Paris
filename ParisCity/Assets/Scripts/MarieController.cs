@@ -13,14 +13,13 @@ public class MarieController : MonoBehaviour
     public HealthBar HP;
     public Transform Paws;
     //Animation code
-    public Animator animator;
+  //  public Animator animator;
     //Weapon Code
     public Transform BaguettePos;
     public float fBaguetteRange = 0.5f;
     public float fsmackRate = 3f;
     float fnextSmack = 0f;
-    // Code to determine what to hit
-    public LayerMask Enemies; // you set the enemies into this layer if there is no layer just create one with same name.
+    
 
     void Start()
     {
@@ -38,16 +37,6 @@ public class MarieController : MonoBehaviour
         MoveMarie();
         CheckPoint();
 
-        //Ýf you press left mouse button it should attack with this code
-        if (Time.time >= fnextSmack)
-        {
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                Baguattack();
-                fnextSmack = Time.time + 1f / fsmackRate;
-            }
-        }
     }
 
     void MoveMarie()
@@ -72,6 +61,17 @@ public class MarieController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow) && grounded)
         {
             _rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
+        }
+
+
+        //If you press left mouse button it should attack with this code
+        if (Time.time >= fnextSmack)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Baguattack();
+                fnextSmack = Time.time + 1f / fsmackRate;
+            }
         }
 
     }
@@ -106,7 +106,9 @@ public class MarieController : MonoBehaviour
         // ( Code for animation not of use yet) animator.SetTrigger("Baguattack"); 
 
         //Attack Range
-        Collider2D[] smack = Physics2D.OverlapCircleAll(BaguettePos.position, fBaguetteRange, Enemies); // specific code for checking what to collide. We can use layers so attack only collides with enemy layers. Basicaly Marie chooses what to smack
+        // specific code for checking what to collide. We can use layers so attack only collides with enemy layers.
+        // Basicaly Marie chooses what to smack
+        Collider2D[] smack = Physics2D.OverlapCircleAll(BaguettePos.position, fBaguetteRange, LayerMask.GetMask("Enemy")); 
 
         //Damage
         foreach (Collider2D enemy in smack) //it will smack each person that is count as enemy in the reach parameter we made in attack range section
@@ -115,7 +117,7 @@ public class MarieController : MonoBehaviour
         }
     }
 
-    //I'm using this to determine range so ý can see the spehere on scene
+    //I'm using this to determine range so I can see the spehere on scene
     private void OnDrawGizmosSelected()
     {
         if (BaguettePos == null)
