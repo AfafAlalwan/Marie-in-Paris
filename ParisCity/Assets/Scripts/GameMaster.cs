@@ -10,6 +10,7 @@ public class GameMaster : MonoBehaviour
 
     private void Awake()
     {
+
         // if there wasn't an instance set this one to it
         if (instance == null)
         {
