@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class MarieController : MonoBehaviour
 {
     private GameMaster gm;
-
     SpriteRenderer _renderer;
     Rigidbody2D _rb;
     public float RunningSpeed = 1f, JumpForce = 5f;
@@ -29,7 +28,6 @@ public class MarieController : MonoBehaviour
         //starting position 
         gm = GameObject.FindGameObjectWithTag("gameMaster").GetComponent<GameMaster>();
         transform.position = gm.lastCheckPointPos;
-
     }
 
     void Update()
