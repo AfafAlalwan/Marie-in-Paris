@@ -12,7 +12,7 @@ public class MarieController : MonoBehaviour
     public HealthBar HP;
     public Transform Paws;
     //Animation code
-  //  public Animator animator;
+    public Animator animator;
     //Weapon Code
     public Transform BaguettePos;
     public float fBaguetteRange = 0.5f;
@@ -43,13 +43,23 @@ public class MarieController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
+            animator.SetBool("Running", true);
             horizontal = -1;
             _renderer.flipX = true;
+
+
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             horizontal = 1;
             _renderer.flipX = false;
+            animator.SetBool("Running", true);
+
+        }
+
+        if (horizontal == 0)
+        {
+            animator.SetBool("Running", false);
         }
 
         _rb.velocity = new Vector2(horizontal * RunningSpeed, _rb.velocity.y);
@@ -59,15 +69,17 @@ public class MarieController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow) && grounded)
         {
             _rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
+            animator.SetTrigger("Jump");
         }
 
 
-        //If you press left mouse button it should attack with this code
+        //If you press Space button it should attack with this code
         if (Time.time >= fnextSmack)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetKey(KeyCode.Space))
             {
                 Baguattack();
+                animator.SetTrigger("Baguattack");
                 fnextSmack = Time.time + 1f / fsmackRate;
             }
         }
@@ -100,9 +112,6 @@ public class MarieController : MonoBehaviour
     //Player Attacking Code
     void Baguattack()
     {
-        //Animation will be added here
-        // ( Code for animation not of use yet) animator.SetTrigger("Baguattack"); 
-
         //Attack Range
         // specific code for checking what to collide. We can use layers so attack only collides with enemy layers.
         // Basicaly Marie chooses what to smack

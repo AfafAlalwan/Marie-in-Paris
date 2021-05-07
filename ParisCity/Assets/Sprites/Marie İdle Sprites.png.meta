@@ -1,0 +1,684 @@
+fileFormatVersion: 2
+guid: 8f4d21f115bb4a3429c1676a2be7c9a3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6845495253699536708
+    second: "Marie \u0130dle Sprites_0"
+  - first:
+      213: -5164057466836301759
+    second: "Marie \u0130dle Sprites_1"
+  - first:
+      213: 4384320383582233963
+    second: "Marie \u0130dle Sprites_2"
+  - first:
+      213: -8631105432337523395
+    second: "Marie \u0130dle Sprites_3"
+  - first:
+      213: 6394835326223506229
+    second: "Marie \u0130dle Sprites_4"
+  - first:
+      213: 1161373549525165424
+    second: "Marie \u0130dle Sprites_5"
+  - first:
+      213: 689421300253832960
+    second: "Marie \u0130dle Sprites_6"
+  - first:
+      213: 4686946269374663777
+    second: "Marie \u0130dle Sprites_7"
+  - first:
+      213: 1966052442724736956
+    second: "Marie \u0130dle Sprites_8"
+  - first:
+      213: -7382601680356606449
+    second: "Marie \u0130dle Sprites_9"
+  - first:
+      213: -6709430199835665110
+    second: "Marie \u0130dle Sprites_10"
+  - first:
+      213: -6486894935247062822
+    second: "Marie \u0130dle Sprites_11"
+  - first:
+      213: 3481057545791016349
+    second: "Marie \u0130dle Sprites_12"
+  - first:
+      213: 734546464299057732
+    second: "Marie \u0130dle Sprites_13"
+  - first:
+      213: -8904517825225854455
+    second: "Marie \u0130dle Sprites_14"
+  - first:
+      213: 7700525654086810286
+    second: "Marie \u0130dle Sprites_15"
+  - first:
+      213: 9130083200142688182
+    second: "Marie \u0130dle Sprites_16"
+  - first:
+      213: 6405669754786000839
+    second: "Marie \u0130dle Sprites_17"
+  - first:
+      213: -6746000027987145092
+    second: "Marie \u0130dle Sprites_18"
+  - first:
+      213: -5742263942000643531
+    second: "Marie \u0130dle Sprites_19"
+  - first:
+      213: -2026494882333038674
+    second: "Marie \u0130dle Sprites_20"
+  - first:
+      213: -6944291075292144921
+    second: "Marie \u0130dle Sprites_21"
+  - first:
+      213: 6770971414875085511
+    second: "Marie \u0130dle Sprites_22"
+  - first:
+      213: 7828374457718168418
+    second: "Marie \u0130dle Sprites_23"
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_0"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1862
+        width: 281
+        height: 298
+      alignment: 9
+      pivot: {x: 0.637997, y: 0.63477135}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb8dd93f55aeff0a0800000000000000
+      internalID: -6845495253699536708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_1"
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 1866
+        width: 270
+        height: 294
+      alignment: 9
+      pivot: {x: 0.6282312, y: 0.646026}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 148c48128159558b0800000000000000
+      internalID: -5164057466836301759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_2"
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 1862
+        width: 258
+        height: 298
+      alignment: 9
+      pivot: {x: 0.5966208, y: 0.6301245}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b656ce4e82c38dc30800000000000000
+      internalID: 4384320383582233963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_3"
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 1862
+        width: 236
+        height: 298
+      alignment: 9
+      pivot: {x: 0.57041854, y: 0.63477135}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3dd39eb657283880800000000000000
+      internalID: -8631105432337523395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_4"
+      rect:
+        serializedVersion: 2
+        x: 1196
+        y: 1862
+        width: 203
+        height: 298
+      alignment: 9
+      pivot: {x: 0.47953367, y: 0.63477135}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53bdba019d40fb850800000000000000
+      internalID: 6394835326223506229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_5"
+      rect:
+        serializedVersion: 2
+        x: 1450
+        y: 1869
+        width: 202
+        height: 291
+      alignment: 9
+      pivot: {x: 0.45886412, y: 0.6475314}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0756bfe07170e1010800000000000000
+      internalID: 1161373549525165424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_6"
+      rect:
+        serializedVersion: 2
+        x: 1699
+        y: 1871
+        width: 202
+        height: 289
+      alignment: 9
+      pivot: {x: 0.49314353, y: 0.6533448}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 007b7361501519900800000000000000
+      internalID: 689421300253832960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_7"
+      rect:
+        serializedVersion: 2
+        x: 1958
+        y: 1866
+        width: 202
+        height: 290
+      alignment: 9
+      pivot: {x: 0.48628825, y: 0.64326507}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16c4b6bacc06b0140800000000000000
+      internalID: 4686946269374663777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_8"
+      rect:
+        serializedVersion: 2
+        x: 2201
+        y: 1858
+        width: 203
+        height: 298
+      alignment: 9
+      pivot: {x: 0.4931773, y: 0.62082994}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbf9562b742d84b10800000000000000
+      internalID: 1966052442724736956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_9"
+      rect:
+        serializedVersion: 2
+        x: 2454
+        y: 1860
+        width: 225
+        height: 296
+      alignment: 9
+      pivot: {x: 0.44460395, y: 0.63100374}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0e742ce2eabb8990800000000000000
+      internalID: -7382601680356606449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_10"
+      rect:
+        serializedVersion: 2
+        x: 2728
+        y: 1864
+        width: 261
+        height: 292
+      alignment: 9
+      pivot: {x: 0.3779587, y: 0.61856955}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2d548508c053e2a0800000000000000
+      internalID: -6709430199835665110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_11"
+      rect:
+        serializedVersion: 2
+        x: 3033
+        y: 1862
+        width: 276
+        height: 298
+      alignment: 9
+      pivot: {x: 0.35785618, y: 0.6301245}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad87159ec6be9f5a0800000000000000
+      internalID: -6486894935247062822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_12"
+      rect:
+        serializedVersion: 2
+        x: 3356
+        y: 1864
+        width: 289
+        height: 294
+      alignment: 9
+      pivot: {x: 0.33707035, y: 0.627184}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9d019bf4633f4030800000000000000
+      internalID: 3481057545791016349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_13"
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 1526
+        width: 275
+        height: 298
+      alignment: 9
+      pivot: {x: 0.3539563, y: 0.6254772}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44280931e12a13a00800000000000000
+      internalID: 734546464299057732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_14"
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 1528
+        width: 260
+        height: 298
+      alignment: 9
+      pivot: {x: 0.38281637, y: 0.63477176}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9027743573ccc6480800000000000000
+      internalID: -8904517825225854455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_15"
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 1526
+        width: 225
+        height: 298
+      alignment: 9
+      pivot: {x: 0.43229383, y: 0.63477176}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eaa70a38843cdda60800000000000000
+      internalID: 7700525654086810286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_16"
+      rect:
+        serializedVersion: 2
+        x: 947
+        y: 1530
+        width: 202
+        height: 298
+      alignment: 9
+      pivot: {x: 0.47257647, y: 0.6301245}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bf344a1c4294be70800000000000000
+      internalID: 9130083200142688182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_17"
+      rect:
+        serializedVersion: 2
+        x: 1198
+        y: 1532
+        width: 202
+        height: 298
+      alignment: 9
+      pivot: {x: 0.49314412, y: 0.6301245}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cfab7a04b285e850800000000000000
+      internalID: 6405669754786000839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_18"
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 1535
+        width: 201
+        height: 298
+      alignment: 9
+      pivot: {x: 0.48622003, y: 0.6301245}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7e0d0567b46162a0800000000000000
+      internalID: -6746000027987145092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_19"
+      rect:
+        serializedVersion: 2
+        x: 1701
+        y: 1536
+        width: 193
+        height: 298
+      alignment: 9
+      pivot: {x: 0.50717556, y: 0.6254772}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 532748a5e516f40b0800000000000000
+      internalID: -5742263942000643531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_20"
+      rect:
+        serializedVersion: 2
+        x: 1954
+        y: 1541
+        width: 202
+        height: 298
+      alignment: 9
+      pivot: {x: 0.48628825, y: 0.6254772}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea7646f24a170e3e0800000000000000
+      internalID: -2026494882333038674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_21"
+      rect:
+        serializedVersion: 2
+        x: 2175
+        y: 1548
+        width: 234
+        height: 300
+      alignment: 9
+      pivot: {x: 0.56455034, y: 0.6338733}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7eadb483f0ce0af90800000000000000
+      internalID: -6944291075292144921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_22"
+      rect:
+        serializedVersion: 2
+        x: 2413
+        y: 1559
+        width: 254
+        height: 303
+      alignment: 9
+      pivot: {x: 0.5981426, y: 0.62340665}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ca14ffa0a257fd50800000000000000
+      internalID: 6770971414875085511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Marie \u0130dle Sprites_23"
+      rect:
+        serializedVersion: 2
+        x: 2666
+        y: 1569
+        width: 270
+        height: 292
+      alignment: 9
+      pivot: {x: 0.623102, y: 0.6267533}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26b5801c719f3ac60800000000000000
+      internalID: 7828374457718168418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
