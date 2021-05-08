@@ -45,6 +45,7 @@ public class MarieController : MonoBehaviour
         {
             animator.SetBool("Running", true);
             horizontal = -1;
+            //Makes animation play when running
             _renderer.flipX = true;
 
 
@@ -53,12 +54,14 @@ public class MarieController : MonoBehaviour
         {
             horizontal = 1;
             _renderer.flipX = false;
+            //Makes animation play when running
             animator.SetBool("Running", true);
 
         }
 
         if (horizontal == 0)
         {
+            //Stopping the Animation
             animator.SetBool("Running", false);
         }
 
@@ -69,6 +72,7 @@ public class MarieController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow) && grounded)
         {
             _rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
+            //Jump Animation Trigger Code (Trigger so it doesn't loop)
             animator.SetTrigger("Jump");
         }
 
@@ -79,6 +83,7 @@ public class MarieController : MonoBehaviour
             if (Input.GetKey(KeyCode.Space))
             {
                 Baguattack();
+                //Attack Animation Trigger Code (Trigger so it doesn't loop)
                 animator.SetTrigger("Baguattack");
                 fnextSmack = Time.time + 1f / fsmackRate;
             }
