@@ -93,7 +93,10 @@ public class MarieController : MonoBehaviour
     bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.Raycast(Paws.position, Vector2.down, 1000, LayerMask.GetMask("Ground"));
-        return (hit.distance < 0.1f);
+
+        Debug.Log(hit.distance);
+        //  return (hit.distance < 0.1f);
+        return true;
     }
 
     void CheckPoint()
