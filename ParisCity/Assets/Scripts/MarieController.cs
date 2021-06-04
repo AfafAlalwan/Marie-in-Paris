@@ -11,6 +11,7 @@ public class MarieController : MonoBehaviour
     public float RunningSpeed = 1f, JumpForce = 5f;
     public HealthBar HP;
     public Transform Paws;
+    public LayerMask GroundLayer;
     //Animation code
     public Animator animator;
     //Weapon Code
@@ -67,7 +68,7 @@ public class MarieController : MonoBehaviour
 
         _rb.velocity = new Vector2(horizontal * RunningSpeed, _rb.velocity.y);
 
-        bool grounded = IsGrounded();
+        bool grounded = Physics2D.OverlapCircle(Paws.position, 0.2f, GroundLayer);
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && grounded)
         {
@@ -90,14 +91,7 @@ public class MarieController : MonoBehaviour
         }
 
     }
-    bool IsGrounded()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(Paws.position, Vector2.down, 1000, LayerMask.GetMask("Ground"));
-
-        Debug.Log(hit.distance);
-        //  return (hit.distance < 0.1f);
-        return true;
-    }
+  
 
     void CheckPoint()
     {
