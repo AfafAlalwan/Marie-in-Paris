@@ -11,6 +11,7 @@ TagManager:
   - End
   - Car
   - Kitty
+  - Pushable
   layers:
   - Default
   - TransparentFX

@@ -20,7 +20,11 @@ public class MarieController : MonoBehaviour
     public float fBaguetteRange = 0.5f;
     public float fsmackRate = 3f;
     float fnextSmack = 0f;
-    
+
+    //for pushing
+    public float PushDistance = 1f;
+    public LayerMask PushMask;
+    GameObject box;
 
     void Start()
     {
@@ -67,7 +71,7 @@ public class MarieController : MonoBehaviour
             animator.SetBool("Running", false);
         }
 
-        _rb.velocity = new Vector2(horizontal * RunningSpeed, _rb.velocity.y);
+         _rb.velocity = new Vector2(horizontal * RunningSpeed, _rb.velocity.y);
 
         bool grounded = Physics2D.OverlapCircle(Paws.position, 0.2f, GroundLayer);
 
@@ -91,6 +95,30 @@ public class MarieController : MonoBehaviour
             }
         }
 
+        //For pushiing and pulling press P 
+        Physics2D.queriesStartInColliders = false;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right* transform.localScale.x, PushDistance, PushMask); //I think cuz of this
+
+        try
+        {if (hit.collider != null && hit.collider.gameObject.tag == "Pushable" && Input.GetKeyDown(KeyCode.P))
+        {
+            box = hit.collider.gameObject;
+
+            box.GetComponent<FixedJoint2D>().enabled = true;
+            box.GetComponent<BoxPushnPull>().beingPushed = true;
+            box.GetComponent<FixedJoint2D>().connectedBody = this.GetComponent<Rigidbody2D>();
+        }
+        else if (Input.GetKeyUp(KeyCode.P))
+        {
+            box.GetComponent<FixedJoint2D>().enabled = false;
+            box.GetComponent<BoxPushnPull>().beingPushed = false;
+        }
+
+        }catch(System.NullReferenceException e)
+        {
+            Debug.Log("meow");
+        }
+        
     }
   
 
@@ -134,5 +162,14 @@ public class MarieController : MonoBehaviour
             return;
 
         Gizmos.DrawWireSphere(BaguettePos.position, fBaguetteRange);
+    }
+
+    //Drawing lines for pullnpush
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(transform.position,(Vector2)transform.position + Vector2.right * transform.localScale.x * PushDistance);
+        Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.left * transform.localScale.x * PushDistance);
+
     }
 }
