@@ -9,7 +9,8 @@ public class MarieController : MonoBehaviour
     SpriteRenderer _renderer;
     Rigidbody2D _rb;
     public float RunningSpeed = 1f, JumpForce = 5f;
-    public HealthBar HP;
+    //  public HealthBar HP;
+    public HealthSystem HP;
     public Transform Paws;
     public LayerMask GroundLayer;
     //Animation code
@@ -98,7 +99,7 @@ public class MarieController : MonoBehaviour
         if (HP.currentHealth == 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            HP.currentHealth = 100;
+            HP.currentHealth = 90; //was 100
         }
     }
 
@@ -106,7 +107,7 @@ public class MarieController : MonoBehaviour
     {
         if (other.gameObject.tag == "Car")
         {
-            HP.ReduceHealth(100);
+            HP.ReduceHealth(90); // was 100
             Destroy(other.gameObject);
         }
     }
