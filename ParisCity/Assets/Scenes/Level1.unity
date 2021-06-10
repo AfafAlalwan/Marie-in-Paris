@@ -2516,7 +2516,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!255 &734822839
 FixedJoint2D:
   m_ObjectHideFlags: 0
@@ -2641,7 +2641,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734822838}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 300.8, y: 66.8, z: 0}
+  m_LocalPosition: {x: 295.8, y: 16, z: 0}
   m_LocalScale: {x: 3, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3091,8 +3091,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 008de55dab96b3e44a795e708c8d8987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RunningSpeed: 7
-  JumpForce: 12
   HP: {fileID: 865162526}
   Paws: {fileID: 1380538747}
   GroundLayer:
@@ -3106,6 +3104,8 @@ MonoBehaviour:
   PushMask:
     serializedVersion: 2
     m_Bits: 503
+  jumpForce: 12
+  maxSpeed: 15
 --- !u!95 &865162525
 Animator:
   serializedVersion: 3

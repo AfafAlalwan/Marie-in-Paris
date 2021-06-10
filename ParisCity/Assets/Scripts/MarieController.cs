@@ -8,7 +8,7 @@ public class MarieController : MonoBehaviour
     private GameMaster gm;
     SpriteRenderer _renderer;
     Rigidbody2D _rb;
-    public float RunningSpeed = 1f, JumpForce = 5f;
+    
     //  public HealthBar HP;
     public HealthSystem HP;
     public Transform Paws;
@@ -26,6 +26,15 @@ public class MarieController : MonoBehaviour
     public LayerMask PushMask;
     GameObject box;
 
+    //for jumping
+    public float jumpForce;
+
+    // for running 
+    private float moveInput;
+    private float runSpeed = 5f;
+    public float maxSpeed = 10f;
+
+
     void Start()
     {
         _renderer = GetComponent<SpriteRenderer>();
@@ -36,49 +45,53 @@ public class MarieController : MonoBehaviour
         transform.position = gm.lastCheckPointPos;
     }
 
+
     void Update()
     {
         MoveMarie();
         CheckPoint();
-
     }
 
+  
     void MoveMarie()
     {
-        float horizontal = 0;
+        moveInput = Input.GetAxisRaw("Horizontal");
+        _rb.velocity = new Vector2(moveInput * runSpeed, _rb.velocity.y);
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if(moveInput > 0)
         {
+            transform.eulerAngles = new Vector3(0, 0, 0);
             animator.SetBool("Running", true);
-            horizontal = -1;
-            //Makes animation play when running
-            _renderer.flipX = true;
-
-
+            if (runSpeed < maxSpeed)
+            {
+                runSpeed += Time.deltaTime;
+            }
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if(moveInput < 0)
         {
-            horizontal = 1;
-            _renderer.flipX = false;
-            //Makes animation play when running
+            transform.eulerAngles = new Vector3(0, 180, 0);
             animator.SetBool("Running", true);
-
+            if (runSpeed < maxSpeed)
+            {
+                runSpeed += Time.deltaTime;
+            }
         }
 
-        if (horizontal == 0)
+        if (moveInput == 0)
         {
-            //Stopping the Animation
+            runSpeed = 5f;
             animator.SetBool("Running", false);
         }
 
-         _rb.velocity = new Vector2(horizontal * RunningSpeed, _rb.velocity.y);
 
+        //Jumping
         bool grounded = Physics2D.OverlapCircle(Paws.position, 0.2f, GroundLayer);
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) && grounded)
+
+        if (Input.GetKeyDown(KeyCode.W) && grounded)
         {
-            _rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
-            //Jump Animation Trigger Code (Trigger so it doesn't loop)
+            _rb.AddForce(Vector2.up * jumpForce * _rb.mass, ForceMode2D.Impulse);
+        
             animator.SetTrigger("Jump");
         }
 
@@ -96,8 +109,23 @@ public class MarieController : MonoBehaviour
         }
 
         //For pushiing and pulling press P 
+        //hit from right
         Physics2D.queriesStartInColliders = false;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right* transform.localScale.x, PushDistance, PushMask); //I think cuz of this
+        RaycastHit2D hit1 = Physics2D.Raycast(transform.position, Vector2.right* transform.localScale.x, PushDistance, PushMask); //I think cuz of this
+
+        //hit from left
+        Physics2D.queriesStartInColliders = false;
+        RaycastHit2D hit2 = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x, PushDistance, PushMask);
+
+        RaycastHit2D hit = hit1;
+
+        if(moveInput > 0)
+        {
+            hit = hit1;
+        }else if(moveInput < 0)
+        {
+            hit = hit2;
+        }
 
         try
         {if (hit.collider != null && hit.collider.gameObject.tag == "Pushable" && Input.GetKeyDown(KeyCode.P))
@@ -118,7 +146,7 @@ public class MarieController : MonoBehaviour
         {
             Debug.Log("meow");
         }
-        
+
     }
   
 
@@ -155,7 +183,7 @@ public class MarieController : MonoBehaviour
         }
     }
 
-    //I'm using this to determine range so I can see the spehere on scene
+    //a shpere for attacking range
     private void OnDrawGizmosSelected()
     {
         if (BaguettePos == null)
@@ -169,7 +197,7 @@ public class MarieController : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(transform.position,(Vector2)transform.position + Vector2.right * transform.localScale.x * PushDistance);
-        Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.left * transform.localScale.x * PushDistance);
-
     }
+
+    
 }
