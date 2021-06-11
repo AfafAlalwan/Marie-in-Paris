@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: fb339bb3570c3c14388e9a0ae77f6488
+guid: 22f282e7b08ccf84eaee655caa3f530d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2023379341328168108
-    second: Marie Jump Sprites_0
+      213: 7595596618655544658
+    second: Ellie The Punk Horse_0
   - first:
-      213: -7598923156104066183
-    second: Marie Jump Sprites_1
+      213: -4028758368189186583
+    second: Ellie The Punk Horse_1
   - first:
-      213: 6960477184819901458
-    second: Marie Jump Sprites_2
+      213: 3313432211337512253
+    second: Ellie The Punk Horse_2
   - first:
-      213: -4503991926533651467
-    second: Marie Jump Sprites_3
+      213: 8042854186498578614
+    second: Ellie The Punk Horse_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -103,85 +103,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Marie Jump Sprites_0
+      name: Ellie The Punk Horse_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 1856
-        width: 283
-        height: 297
+        x: 0
+        y: 25
+        width: 166
+        height: 321
       alignment: 9
-      pivot: {x: 0.6346122, y: 0.6131769}
+      pivot: {x: 0.5150461, y: 0.5248988}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca4bab56acc741c10800000000000000
-      internalID: 2023379341328168108
+      spriteID: 2553f18a1eaf86960800000000000000
+      internalID: 7595596618655544658
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Marie Jump Sprites_1
+      name: Ellie The Punk Horse_1
       rect:
         serializedVersion: 2
-        x: 362
-        y: 1864
-        width: 292
-        height: 292
+        x: 186
+        y: 25
+        width: 189
+        height: 321
       alignment: 9
-      pivot: {x: 0.6381376, y: 0.63046306}
+      pivot: {x: 0.45771137, y: 0.5248988}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97b4dec76a33b8690800000000000000
-      internalID: -7598923156104066183
+      spriteID: 9ed73320c99f618c0800000000000000
+      internalID: -4028758368189186583
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Marie Jump Sprites_2
+      name: Ellie The Punk Horse_2
       rect:
         serializedVersion: 2
-        x: 714
-        y: 1871
-        width: 297
-        height: 285
+        x: 412
+        y: 25
+        width: 200
+        height: 321
       alignment: 9
-      pivot: {x: 0.65090233, y: 0.61007917}
+      pivot: {x: 0.48501387, y: 0.5171179}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 214b6641f15989060800000000000000
-      internalID: 6960477184819901458
+      spriteID: d350c187a0dabfd20800000000000000
+      internalID: 3313432211337512253
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Marie Jump Sprites_3
+      name: Ellie The Punk Horse_3
       rect:
         serializedVersion: 2
-        x: 1065
-        y: 1877
-        width: 279
-        height: 283
+        x: 638
+        y: 25
+        width: 189
+        height: 321
       alignment: 9
-      pivot: {x: 0.6285103, y: 0.6029389}
+      pivot: {x: 0.46035427, y: 0.5248988}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f30cbbb43b9e71c0800000000000000
-      internalID: -4503991926533651467
+      spriteID: 6b8d28e0545fd9f60800000000000000
+      internalID: 8042854186498578614
       vertices: []
       indices: 
       edges: []

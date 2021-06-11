@@ -382,7 +382,7 @@ TextureImporter:
         height: 292
       alignment: 9
       pivot: {x: 0.3779587, y: 0.61856955}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 2, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -630,8 +630,8 @@ TextureImporter:
         serializedVersion: 2
         x: 2413
         y: 1559
-        width: 254
-        height: 303
+        width: 251
+        height: 297
       alignment: 9
       pivot: {x: 0.5981426, y: 0.62340665}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -649,10 +649,10 @@ TextureImporter:
       name: "Marie \u0130dle Sprites_23"
       rect:
         serializedVersion: 2
-        x: 2666
+        x: 2665
         y: 1569
-        width: 270
-        height: 292
+        width: 271
+        height: 291
       alignment: 9
       pivot: {x: 0.623102, y: 0.6267533}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -50,6 +50,7 @@ public class MarieController : MonoBehaviour
     {
         MoveMarie();
         CheckPoint();
+
     }
 
   
@@ -61,6 +62,7 @@ public class MarieController : MonoBehaviour
         if(moveInput > 0)
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
+            animator.SetTrigger("Run Transition");
             animator.SetBool("Running", true);
             if (runSpeed < maxSpeed)
             {
@@ -70,6 +72,7 @@ public class MarieController : MonoBehaviour
         else if(moveInput < 0)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
+            animator.SetTrigger("Run Transition");
             animator.SetBool("Running", true);
             if (runSpeed < maxSpeed)
             {
@@ -131,7 +134,7 @@ public class MarieController : MonoBehaviour
         {if (hit.collider != null && hit.collider.gameObject.tag == "Pushable" && Input.GetKeyDown(KeyCode.P))
         {
             box = hit.collider.gameObject;
-
+            animator.SetBool("Push", true);
             box.GetComponent<FixedJoint2D>().enabled = true;
             box.GetComponent<BoxPushnPull>().beingPushed = true;
             box.GetComponent<FixedJoint2D>().connectedBody = this.GetComponent<Rigidbody2D>();
@@ -140,13 +143,14 @@ public class MarieController : MonoBehaviour
         {
             box.GetComponent<FixedJoint2D>().enabled = false;
             box.GetComponent<BoxPushnPull>().beingPushed = false;
+            animator.SetBool("Push", false);
         }
 
-        }catch(System.NullReferenceException e)
+        }
+        catch(System.NullReferenceException e)
         {
             Debug.Log("meow");
         }
-
     }
   
 
