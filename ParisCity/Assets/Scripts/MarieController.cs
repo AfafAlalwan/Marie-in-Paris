@@ -135,6 +135,7 @@ public class MarieController : MonoBehaviour
         {
             box = hit.collider.gameObject;
             animator.SetBool("Push", true);
+                // animator.SetBool("Pull", true);
             box.GetComponent<FixedJoint2D>().enabled = true;
             box.GetComponent<BoxPushnPull>().beingPushed = true;
             box.GetComponent<FixedJoint2D>().connectedBody = this.GetComponent<Rigidbody2D>();
