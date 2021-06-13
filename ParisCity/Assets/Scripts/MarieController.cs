@@ -25,6 +25,8 @@ public class MarieController : MonoBehaviour
     public float PushDistance = 1f;
     public LayerMask PushMask;
     GameObject box;
+    RaycastHit2D hit;
+    
 
     //for jumping
     public float jumpForce;
@@ -61,7 +63,11 @@ public class MarieController : MonoBehaviour
 
         if(moveInput > 0)
         {
-            transform.eulerAngles = new Vector3(0, 0, 0);
+            if (!Input.GetKey(KeyCode.P))
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+            
             animator.SetTrigger("Run Transition");
             animator.SetBool("Running", true);
             if (runSpeed < maxSpeed)
@@ -71,7 +77,11 @@ public class MarieController : MonoBehaviour
         }
         else if(moveInput < 0)
         {
-            transform.eulerAngles = new Vector3(0, 180, 0);
+            if (!Input.GetKey(KeyCode.P))
+            {
+                transform.eulerAngles = new Vector3(0, 180, 0);
+            }
+            
             animator.SetTrigger("Run Transition");
             animator.SetBool("Running", true);
             if (runSpeed < maxSpeed)
@@ -114,13 +124,13 @@ public class MarieController : MonoBehaviour
         //For pushiing and pulling press P 
         //hit from right
         Physics2D.queriesStartInColliders = false;
-        RaycastHit2D hit1 = Physics2D.Raycast(transform.position, Vector2.right* transform.localScale.x, PushDistance, PushMask); //I think cuz of this
+        RaycastHit2D hit1 = Physics2D.Raycast(transform.position, Vector2.right* transform.localScale.x, PushDistance, PushMask); 
 
         //hit from left
         Physics2D.queriesStartInColliders = false;
         RaycastHit2D hit2 = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x, PushDistance, PushMask);
 
-        RaycastHit2D hit = hit1;
+        hit = hit1;
 
         if(moveInput > 0)
         {
@@ -134,18 +144,26 @@ public class MarieController : MonoBehaviour
         {if (hit.collider != null && hit.collider.gameObject.tag == "Pushable" && Input.GetKeyDown(KeyCode.P))
         {
             box = hit.collider.gameObject;
-            animator.SetBool("Push", true);
-                // animator.SetBool("Pull", true);
+           
             box.GetComponent<FixedJoint2D>().enabled = true;
             box.GetComponent<BoxPushnPull>().beingPushed = true;
             box.GetComponent<FixedJoint2D>().connectedBody = this.GetComponent<Rigidbody2D>();
-        }
+
+            //need to find a way to detect if marie moving right or left for pulling -- tried someways and it didn't work 
+            animator.SetBool("Push", true);
+        //  animator.SetBool("Pull", true);
+
+
+
+            }
         else if (Input.GetKeyUp(KeyCode.P))
         {
             box.GetComponent<FixedJoint2D>().enabled = false;
             box.GetComponent<BoxPushnPull>().beingPushed = false;
             animator.SetBool("Push", false);
-        }
+       //     animator.SetBool("Pull", false);
+            
+            }
 
         }
         catch(System.NullReferenceException e)
