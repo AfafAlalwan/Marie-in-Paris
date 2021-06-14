@@ -30,11 +30,26 @@ public class MarieController : MonoBehaviour
 
     //for jumping
     public float jumpForce;
+    bool isGrounded;
 
     // for running 
     private float moveInput;
     private float runSpeed = 5f;
     public float maxSpeed = 10f;
+    public float AirSpeed = 30f;
+
+    //For wall jump 
+
+    public LayerMask wallLayer;
+    public Transform wallCheck;
+    public Vector2 wallCheckSize;
+    bool isWallSliding; 
+    bool isTouchingWall;
+    public float wallSlidingSpeed;
+    public float wallJumpForce = 18f;
+    public float wallJumpDirection = -1f;
+    public Vector2 wallJumpAngle;
+    
 
 
     void Start()
@@ -45,6 +60,8 @@ public class MarieController : MonoBehaviour
         //starting position 
         gm = GameObject.FindGameObjectWithTag("gameMaster").GetComponent<GameMaster>();
         transform.position = gm.lastCheckPointPos;
+
+        wallJumpAngle.Normalize();
     }
 
 
@@ -59,13 +76,28 @@ public class MarieController : MonoBehaviour
     void MoveMarie()
     {
         moveInput = Input.GetAxisRaw("Horizontal");
-        _rb.velocity = new Vector2(moveInput * runSpeed, _rb.velocity.y);
+
+        if (isGrounded)
+        {
+            _rb.velocity = new Vector2(moveInput * runSpeed, _rb.velocity.y);   
+        }
+        else if( !isGrounded && !isWallSliding && moveInput != 0)
+        {
+            _rb.AddForce(new Vector2(moveInput * AirSpeed, 0));
+            if(Mathf.Abs(_rb.velocity.x) > runSpeed)
+            {
+                _rb.velocity = new Vector2(moveInput * runSpeed, _rb.velocity.y);
+
+            }
+        }
+       
 
         if(moveInput > 0)
         {
-            if (!Input.GetKey(KeyCode.P))
+            if (!Input.GetKey(KeyCode.P) || !isWallSliding)
             {
                 transform.eulerAngles = new Vector3(0, 0, 0);
+                wallJumpAngle *= -1f;
             }
             
             animator.SetTrigger("Run Transition");
@@ -77,9 +109,10 @@ public class MarieController : MonoBehaviour
         }
         else if(moveInput < 0)
         {
-            if (!Input.GetKey(KeyCode.P))
+            if (!Input.GetKey(KeyCode.P) || !isWallSliding)
             {
                 transform.eulerAngles = new Vector3(0, 180, 0);
+                wallJumpAngle *= -1f;
             }
             
             animator.SetTrigger("Run Transition");
@@ -98,10 +131,10 @@ public class MarieController : MonoBehaviour
 
 
         //Jumping
-        bool grounded = Physics2D.OverlapCircle(Paws.position, 0.2f, GroundLayer);
+         isGrounded = Physics2D.OverlapCircle(Paws.position, 0.2f, GroundLayer);
 
 
-        if (Input.GetKeyDown(KeyCode.W) && grounded)
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             _rb.AddForce(Vector2.up * jumpForce * _rb.mass, ForceMode2D.Impulse);
         
@@ -170,9 +203,32 @@ public class MarieController : MonoBehaviour
         {
             Debug.Log("meow");
         }
+
+        //wall jump code
+        isTouchingWall = Physics2D.OverlapBox(wallCheck.position, wallCheckSize, 0, wallLayer);
+
+        if (isTouchingWall && !isGrounded && _rb.velocity.y < 0)
+        {
+            isWallSliding = true;
+            Debug.Log("Touch");
+        }
+        else
+        {
+            isWallSliding = false;
+        }
+
+        if (isWallSliding)
+        {
+            _rb.velocity = new Vector2(_rb.velocity.x, wallSlidingSpeed);   
+        }
+
+        if((isWallSliding || isTouchingWall) && Input.GetKeyDown(KeyCode.W))
+        {
+            _rb.AddForce(new Vector2(wallJumpForce * wallJumpDirection * wallJumpAngle.x, wallJumpForce * wallJumpAngle.y), ForceMode2D.Impulse);
+        }
     }
   
-
+ 
     void CheckPoint()
     {
         if (HP.currentHealth == 0)
@@ -215,11 +271,16 @@ public class MarieController : MonoBehaviour
         Gizmos.DrawWireSphere(BaguettePos.position, fBaguetteRange);
     }
 
-    //Drawing lines for pullnpush
+   
     private void OnDrawGizmos()
-    {
+    { 
+        //Drawing lines for pullnpush
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(transform.position,(Vector2)transform.position + Vector2.right * transform.localScale.x * PushDistance);
+
+        //For wall check
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(wallCheck.position, wallCheckSize);
     }
 
     
