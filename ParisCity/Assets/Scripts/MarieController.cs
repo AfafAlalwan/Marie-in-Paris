@@ -8,7 +8,7 @@ public class MarieController : MonoBehaviour
     private GameMaster gm;
     SpriteRenderer _renderer;
     Rigidbody2D _rb;
-    
+
     //  public HealthBar HP;
     public HealthSystem HP;
     public Transform Paws;
@@ -26,7 +26,7 @@ public class MarieController : MonoBehaviour
     public LayerMask PushMask;
     GameObject box;
     RaycastHit2D hit;
-    
+
 
     //for jumping
     public float jumpForce;
@@ -43,13 +43,14 @@ public class MarieController : MonoBehaviour
     public LayerMask wallLayer;
     public Transform wallCheck;
     public Vector2 wallCheckSize;
-    bool isWallSliding; 
+    bool isWallSliding;
     bool isTouchingWall;
     public float wallSlidingSpeed;
     public float wallJumpForce = 18f;
     public float wallJumpDirection = -1f;
     public Vector2 wallJumpAngle;
-    
+
+    public PhysicsMaterial2D slipperyJam;
 
 
     void Start()
@@ -72,34 +73,42 @@ public class MarieController : MonoBehaviour
 
     }
 
-  
+    void CheckPoint()
+    {
+        if (HP.currentHealth == 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            HP.currentHealth = 90; //was 100
+        }
+    }
+
     void MoveMarie()
     {
         moveInput = Input.GetAxisRaw("Horizontal");
 
         if (isGrounded)
         {
-            _rb.velocity = new Vector2(moveInput * runSpeed, _rb.velocity.y);   
+            _rb.velocity = new Vector2(moveInput * runSpeed, _rb.velocity.y);
         }
-        else if( !isGrounded && !isWallSliding && moveInput != 0)
+        else if (!isGrounded && !isWallSliding && moveInput != 0)
         {
             _rb.AddForce(new Vector2(moveInput * AirSpeed, 0));
-            if(Mathf.Abs(_rb.velocity.x) > runSpeed)
+            if (Mathf.Abs(_rb.velocity.x) > runSpeed)
             {
                 _rb.velocity = new Vector2(moveInput * runSpeed, _rb.velocity.y);
 
             }
         }
-       
 
-        if(moveInput > 0)
+
+        if (moveInput > 0)
         {
             if (!Input.GetKey(KeyCode.P) || !isWallSliding)
             {
                 transform.eulerAngles = new Vector3(0, 0, 0);
                 wallJumpAngle *= -1f;
             }
-            
+
             animator.SetTrigger("Run Transition");
             animator.SetBool("Running", true);
             if (runSpeed < maxSpeed)
@@ -107,14 +116,14 @@ public class MarieController : MonoBehaviour
                 runSpeed += Time.deltaTime;
             }
         }
-        else if(moveInput < 0)
+        else if (moveInput < 0)
         {
             if (!Input.GetKey(KeyCode.P) || !isWallSliding)
             {
                 transform.eulerAngles = new Vector3(0, 180, 0);
                 wallJumpAngle *= -1f;
             }
-            
+
             animator.SetTrigger("Run Transition");
             animator.SetBool("Running", true);
             if (runSpeed < maxSpeed)
@@ -131,13 +140,13 @@ public class MarieController : MonoBehaviour
 
 
         //Jumping
-         isGrounded = Physics2D.OverlapCircle(Paws.position, 0.2f, GroundLayer);
+        isGrounded = Physics2D.OverlapCircle(Paws.position, 0.2f, GroundLayer);
 
 
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             _rb.AddForce(Vector2.up * jumpForce * _rb.mass, ForceMode2D.Impulse);
-        
+
             animator.SetTrigger("Jump");
         }
 
@@ -157,7 +166,7 @@ public class MarieController : MonoBehaviour
         //For pushiing and pulling press P 
         //hit from right
         Physics2D.queriesStartInColliders = false;
-        RaycastHit2D hit1 = Physics2D.Raycast(transform.position, Vector2.right* transform.localScale.x, PushDistance, PushMask); 
+        RaycastHit2D hit1 = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, PushDistance, PushMask);
 
         //hit from left
         Physics2D.queriesStartInColliders = false;
@@ -165,41 +174,43 @@ public class MarieController : MonoBehaviour
 
         hit = hit1;
 
-        if(moveInput > 0)
+        if (moveInput > 0)
         {
             hit = hit1;
-        }else if(moveInput < 0)
+        }
+        else if (moveInput < 0)
         {
             hit = hit2;
         }
 
         try
-        {if (hit.collider != null && hit.collider.gameObject.tag == "Pushable" && Input.GetKeyDown(KeyCode.P))
         {
-            box = hit.collider.gameObject;
-           
-            box.GetComponent<FixedJoint2D>().enabled = true;
-            box.GetComponent<BoxPushnPull>().beingPushed = true;
-            box.GetComponent<FixedJoint2D>().connectedBody = this.GetComponent<Rigidbody2D>();
+            if (hit.collider != null && hit.collider.gameObject.tag == "Pushable" && Input.GetKeyDown(KeyCode.P))
+            {
+                box = hit.collider.gameObject;
 
-            //need to find a way to detect if marie moving right or left for pulling -- tried someways and it didn't work 
-            animator.SetBool("Push", true);
-        //  animator.SetBool("Pull", true);
+                box.GetComponent<FixedJoint2D>().enabled = true;
+                box.GetComponent<BoxPushnPull>().beingPushed = true;
+                box.GetComponent<FixedJoint2D>().connectedBody = this.GetComponent<Rigidbody2D>();
+
+                //need to find a way to detect if marie moving right or left for pulling -- tried someways and it didn't work 
+                animator.SetBool("Push", true);
+                //  animator.SetBool("Pull", true);
 
 
 
             }
-        else if (Input.GetKeyUp(KeyCode.P))
-        {
-            box.GetComponent<FixedJoint2D>().enabled = false;
-            box.GetComponent<BoxPushnPull>().beingPushed = false;
-            animator.SetBool("Push", false);
-       //     animator.SetBool("Pull", false);
-            
+            else if (Input.GetKeyUp(KeyCode.P))
+            {
+                box.GetComponent<FixedJoint2D>().enabled = false;
+                box.GetComponent<BoxPushnPull>().beingPushed = false;
+                animator.SetBool("Push", false);
+                //     animator.SetBool("Pull", false);
+
             }
 
         }
-        catch(System.NullReferenceException e)
+        catch (System.NullReferenceException e)
         {
             Debug.Log("meow");
         }
@@ -219,69 +230,68 @@ public class MarieController : MonoBehaviour
 
         if (isWallSliding)
         {
-            _rb.velocity = new Vector2(_rb.velocity.x, wallSlidingSpeed);   
+            _rb.velocity = new Vector2(_rb.velocity.x, wallSlidingSpeed);
         }
 
-        if((isWallSliding || isTouchingWall) && Input.GetKeyDown(KeyCode.W))
+        if ((isWallSliding || isTouchingWall) && Input.GetKeyDown(KeyCode.W))
         {
             _rb.AddForce(new Vector2(wallJumpForce * wallJumpDirection * wallJumpAngle.x, wallJumpForce * wallJumpAngle.y), ForceMode2D.Impulse);
         }
-    }
-  
- 
-    void CheckPoint()
-    {
-        if (HP.currentHealth == 0)
+
+        if (!isTouchingWall || !isWallSliding)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            HP.currentHealth = 90; //was 100
+            // GetComponent<Renderer>(). = slipperyJam;
+
         }
+
+
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "Car")
+        private void OnCollisionEnter2D(Collision2D other)
         {
-            HP.ReduceHealth(90); // was 100
-            Destroy(other.gameObject);
+            if (other.gameObject.tag == "Car")
+            {
+                HP.ReduceHealth(90); // was 100
+                Destroy(other.gameObject);
+            }
         }
-    }
 
-    //Player Attacking Code
-    void Baguattack()
-    {
-        //Attack Range
-        // specific code for checking what to collide. We can use layers so attack only collides with enemy layers.
-        // Basicaly Marie chooses what to smack
-        Collider2D[] smack = Physics2D.OverlapCircleAll(BaguettePos.position, fBaguetteRange, LayerMask.GetMask("Enemy")); 
-
-        //Damage
-        foreach (Collider2D enemy in smack) //it will smack each person that is count as enemy in the reach parameter we made in attack range section
+        //Player Attacking Code
+        void Baguattack()
         {
-            enemy.GetComponent<Kitties>().GetSmacked(25); //change getsmacked to change dmg number. Kitties are enemy cats.
+            //Attack Range
+            // specific code for checking what to collide. We can use layers so attack only collides with enemy layers.
+            // Basicaly Marie chooses what to smack
+            Collider2D[] smack = Physics2D.OverlapCircleAll(BaguettePos.position, fBaguetteRange, LayerMask.GetMask("Enemy"));
+
+            //Damage
+            foreach (Collider2D enemy in smack) //it will smack each person that is count as enemy in the reach parameter we made in attack range section
+            {
+                enemy.GetComponent<Kitties>().GetSmacked(25); //change getsmacked to change dmg number. Kitties are enemy cats.
+            }
         }
-    }
 
-    //a shpere for attacking range
-    private void OnDrawGizmosSelected()
-    {
-        if (BaguettePos == null)
-            return;
+        //a shpere for attacking range
+       private void OnDrawGizmosSelected()
+        {
+            if (BaguettePos == null)
+                return;
 
-        Gizmos.DrawWireSphere(BaguettePos.position, fBaguetteRange);
-    }
+            Gizmos.DrawWireSphere(BaguettePos.position, fBaguetteRange);
+        }
 
-   
-    private void OnDrawGizmos()
-    { 
-        //Drawing lines for pullnpush
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(transform.position,(Vector2)transform.position + Vector2.right * transform.localScale.x * PushDistance);
 
-        //For wall check
-        Gizmos.color = Color.red;
-        Gizmos.DrawCube(wallCheck.position, wallCheckSize);
-    }
+        private void OnDrawGizmos()
+        {
+            //Drawing lines for pullnpush
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.right * transform.localScale.x * PushDistance);
+
+            //For wall check
+            Gizmos.color = Color.red;
+            Gizmos.DrawCube(wallCheck.position, wallCheckSize);
+        }
+
 
     
 }

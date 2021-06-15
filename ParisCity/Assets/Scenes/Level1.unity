@@ -2131,7 +2131,7 @@ Transform:
   - {fileID: 952057204}
   - {fileID: 2041674040}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &533592938
 GameObject:
@@ -2478,7 +2478,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &570469734
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2756,8 +2756,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnObject:
-  - {fileID: 2998823424554065828, guid: c53e93c4bfb04ee479c3eb75eb24c125, type: 3}
-  - {fileID: 5506115203549478486, guid: 2b10ef41fc560214595f436f0877bfa8, type: 3}
+  - {fileID: 1139117433626744973, guid: b64150f7fd506f3488f6c40e96cdb5c8, type: 3}
+  - {fileID: 4593211247152867451, guid: 87aada5d3debaf44fb5c3f9d60a40506, type: 3}
   spawnRate: 3
 --- !u!4 &609090627
 Transform:
@@ -3638,6 +3638,7 @@ MonoBehaviour:
   wallJumpForce: -5
   wallJumpDirection: -1
   wallJumpAngle: {x: 1, y: 3}
+  slipperyJam: {fileID: 0}
 --- !u!95 &865162525
 Animator:
   serializedVersion: 3
@@ -8166,7 +8167,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2998823424554065823, guid: c53e93c4bfb04ee479c3eb75eb24c125, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2998823424554065823, guid: c53e93c4bfb04ee479c3eb75eb24c125, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8243,7 +8244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5506115203549478491, guid: 2b10ef41fc560214595f436f0877bfa8, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5506115203549478491, guid: 2b10ef41fc560214595f436f0877bfa8, type: 3}
       propertyPath: m_LocalPosition.x
