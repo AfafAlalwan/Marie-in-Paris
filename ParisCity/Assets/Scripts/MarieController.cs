@@ -77,7 +77,7 @@ public class MarieController : MonoBehaviour
     {
         if (HP.currentHealth == 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(0);
             HP.currentHealth = 90; //was 100
         }
     }
@@ -247,51 +247,52 @@ public class MarieController : MonoBehaviour
 
     }
 
-        private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Car")
         {
-            if (other.gameObject.tag == "Car")
-            {
-                HP.ReduceHealth(90); // was 100
-                Destroy(other.gameObject);
-            }
+            SceneManager.LoadScene(1);
+            HP.ReduceHealth(90); // was 100
+            Destroy(other.gameObject);
         }
+    }
 
-        //Player Attacking Code
-        void Baguattack()
+    //Player Attacking Code
+    void Baguattack()
+    {
+        //Attack Range
+        // specific code for checking what to collide. We can use layers so attack only collides with enemy layers.
+        // Basicaly Marie chooses what to smack
+        Collider2D[] smack = Physics2D.OverlapCircleAll(BaguettePos.position, fBaguetteRange, LayerMask.GetMask("Enemy"));
+
+        //Damage
+        foreach (Collider2D enemy in smack) //it will smack each person that is count as enemy in the reach parameter we made in attack range section
         {
-            //Attack Range
-            // specific code for checking what to collide. We can use layers so attack only collides with enemy layers.
-            // Basicaly Marie chooses what to smack
-            Collider2D[] smack = Physics2D.OverlapCircleAll(BaguettePos.position, fBaguetteRange, LayerMask.GetMask("Enemy"));
-
-            //Damage
-            foreach (Collider2D enemy in smack) //it will smack each person that is count as enemy in the reach parameter we made in attack range section
-            {
-                enemy.GetComponent<Kitties>().GetSmacked(25); //change getsmacked to change dmg number. Kitties are enemy cats.
-            }
+            enemy.GetComponent<Kitties>().GetSmacked(25); //change getsmacked to change dmg number. Kitties are enemy cats.
         }
+    }
 
-        //a shpere for attacking range
-       private void OnDrawGizmosSelected()
-        {
-            if (BaguettePos == null)
-                return;
+    //a shpere for attacking range
+    private void OnDrawGizmosSelected()
+    {
+        if (BaguettePos == null)
+            return;
 
-            Gizmos.DrawWireSphere(BaguettePos.position, fBaguetteRange);
-        }
-
-
-        private void OnDrawGizmos()
-        {
-            //Drawing lines for pullnpush
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.right * transform.localScale.x * PushDistance);
-
-            //For wall check
-            Gizmos.color = Color.red;
-            Gizmos.DrawCube(wallCheck.position, wallCheckSize);
-        }
+        Gizmos.DrawWireSphere(BaguettePos.position, fBaguetteRange);
+    }
 
 
-    
+    private void OnDrawGizmos()
+    {
+        //Drawing lines for pullnpush
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.right * transform.localScale.x * PushDistance);
+
+        //For wall check
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(wallCheck.position, wallCheckSize);
+    }
+
+
+
 }
