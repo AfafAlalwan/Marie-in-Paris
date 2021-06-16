@@ -148,6 +148,8 @@ public class MarieController : MonoBehaviour
             _rb.AddForce(Vector2.up * jumpForce * _rb.mass, ForceMode2D.Impulse);
 
             animator.SetTrigger("Jump");
+
+            SoundManager.PlaySound("Jump"); // JUMP SOUND ******
         }
 
 
@@ -159,6 +161,9 @@ public class MarieController : MonoBehaviour
                 Baguattack();
                 //Attack Animation Trigger Code (Trigger so it doesn't loop)
                 animator.SetTrigger("Baguattack");
+
+                SoundManager.PlaySound("Hit"); // HIT SOUND ***
+
                 fnextSmack = Time.time + 1f / fsmackRate;
             }
         }
@@ -195,6 +200,9 @@ public class MarieController : MonoBehaviour
 
                 //need to find a way to detect if marie moving right or left for pulling -- tried someways and it didn't work 
                 animator.SetBool("Push", true);
+
+                SoundManager.PlaySound("Pushpull"); // PUSH SOUND***
+
                 //  animator.SetBool("Pull", true);
 
 
