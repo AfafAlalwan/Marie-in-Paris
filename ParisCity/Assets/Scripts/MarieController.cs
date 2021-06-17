@@ -213,7 +213,7 @@ public class MarieController : MonoBehaviour
                 box.GetComponent<FixedJoint2D>().enabled = false;
                 box.GetComponent<BoxPushnPull>().beingPushed = false;
                 animator.SetBool("Push", false);
-                //     animator.SetBool("Pull", false);
+                //  animator.SetBool("Pull", false);
 
             }
 
