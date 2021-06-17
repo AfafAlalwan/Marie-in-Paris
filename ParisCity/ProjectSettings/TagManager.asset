@@ -13,6 +13,7 @@ TagManager:
   - Kitty
   - Pushable
   - Ellie
+  - NPC
   layers:
   - Default
   - TransparentFX

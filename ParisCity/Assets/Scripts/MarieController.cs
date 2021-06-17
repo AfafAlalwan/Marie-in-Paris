@@ -50,9 +50,10 @@ public class MarieController : MonoBehaviour
     public float wallJumpDirection = -1f;
     public Vector2 wallJumpAngle;
 
-    public PhysicsMaterial2D slipperyJam;
+    //   public PhysicsMaterial2D slipperyJam;
 
-
+    //for gliding
+    bool isGliding;
     void Start()
     {
         _renderer = GetComponent<SpriteRenderer>();
@@ -246,12 +247,22 @@ public class MarieController : MonoBehaviour
             _rb.AddForce(new Vector2(wallJumpForce * wallJumpDirection * wallJumpAngle.x, wallJumpForce * wallJumpAngle.y), ForceMode2D.Impulse);
         }
 
-        if (!isTouchingWall || !isWallSliding)
+      /*  if (!isTouchingWall || !isWallSliding)
         {
             // GetComponent<Renderer>(). = slipperyJam;
 
-        }
+        } */
 
+        //For gliding
+        
+        if(!isGrounded && isGliding)
+        {
+            _rb.gravityScale = 0.5f;
+        }
+        else
+        {
+            _rb.gravityScale = 1.4f;
+        }
 
     }
 
@@ -263,6 +274,18 @@ public class MarieController : MonoBehaviour
             HP.ReduceHealth(90); // was 100
             Destroy(other.gameObject);
         }
+
+        if(other.gameObject.tag == "Bird")
+        {
+            isGliding = true;
+        }
+        else
+        {
+            isGliding = false;
+        }
+
+      
+
     }
 
     //Player Attacking Code
