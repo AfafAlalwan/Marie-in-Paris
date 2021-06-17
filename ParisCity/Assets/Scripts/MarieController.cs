@@ -110,7 +110,6 @@ public class MarieController : MonoBehaviour
                 wallJumpAngle *= -1f;
             }
 
-            animator.SetTrigger("Run Transition");
             animator.SetBool("Running", true);
             if (runSpeed < maxSpeed)
             {
@@ -125,7 +124,7 @@ public class MarieController : MonoBehaviour
                 wallJumpAngle *= -1f;
             }
 
-            animator.SetTrigger("Run Transition");
+
             animator.SetBool("Running", true);
             if (runSpeed < maxSpeed)
             {
@@ -323,7 +322,8 @@ public class MarieController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawCube(wallCheck.position, wallCheckSize);
     }
-
+    //Code for unused Animation take it from here if you fix it
+    // animator.SetTrigger("Smacked");  
 
 
 }

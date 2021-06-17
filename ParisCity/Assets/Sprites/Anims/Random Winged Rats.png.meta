@@ -1,19 +1,22 @@
 fileFormatVersion: 2
-guid: 22f282e7b08ccf84eaee655caa3f530d
+guid: 361ea8d03e2580548b29c0bbb0fb37ce
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7595596618655544658
-    second: Ellie The Punk Horse_0
+      213: -1636869871301723235
+    second: Random Winged Rats_0
   - first:
-      213: -4028758368189186583
-    second: Ellie The Punk Horse_1
+      213: -2434407403417591888
+    second: Random Winged Rats_1
   - first:
-      213: 3313432211337512253
-    second: Ellie The Punk Horse_2
+      213: 1270125325307833633
+    second: Random Winged Rats_2
   - first:
-      213: 8042854186498578614
-    second: Ellie The Punk Horse_3
+      213: -9154508346762479765
+    second: Random Winged Rats_3
+  - first:
+      213: -8626482077166206481
+    second: Random Winged Rats_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -45,8 +48,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -103,85 +106,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ellie The Punk Horse_0
+      name: Random Winged Rats_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 25
-        width: 166
-        height: 321
+        x: 82
+        y: 59
+        width: 399
+        height: 336
       alignment: 9
-      pivot: {x: 0.5150461, y: 0.5248988}
+      pivot: {x: 0.93361086, y: 0.63065594}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2553f18a1eaf86960800000000000000
-      internalID: 7595596618655544658
+      spriteID: d9b7589468ba849e0800000000000000
+      internalID: -1636869871301723235
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ellie The Punk Horse_1
+      name: Random Winged Rats_1
       rect:
         serializedVersion: 2
-        x: 186
-        y: 25
-        width: 189
-        height: 321
+        x: 618
+        y: 52
+        width: 408
+        height: 298
       alignment: 9
-      pivot: {x: 0.45771137, y: 0.5248988}
+      pivot: {x: 0.9371851, y: 0.7097764}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ed73320c99f618c0800000000000000
-      internalID: -4028758368189186583
+      spriteID: 0bf96b85d5f373ed0800000000000000
+      internalID: -2434407403417591888
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ellie The Punk Horse_2
+      name: Random Winged Rats_2
       rect:
         serializedVersion: 2
-        x: 412
-        y: 25
-        width: 200
-        height: 321
+        x: 1104
+        y: 51
+        width: 412
+        height: 273
       alignment: 9
-      pivot: {x: 0.48501387, y: 0.5171179}
+      pivot: {x: 0.9361703, y: 0.7801063}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d350c187a0dabfd20800000000000000
-      internalID: 3313432211337512253
+      spriteID: 12d6333014460a110800000000000000
+      internalID: 1270125325307833633
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ellie The Punk Horse_3
+      name: Random Winged Rats_3
       rect:
         serializedVersion: 2
-        x: 638
-        y: 25
-        width: 189
-        height: 321
+        x: 1589
+        y: 50
+        width: 413
+        height: 273
       alignment: 9
-      pivot: {x: 0.46035427, y: 0.5248988}
+      pivot: {x: 0.9369659, y: 0.7857085}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b8d28e0545fd9f60800000000000000
-      internalID: 8042854186498578614
+      spriteID: b67bfd94927a4f080800000000000000
+      internalID: -9154508346762479765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Random Winged Rats_4
+      rect:
+        serializedVersion: 2
+        x: 2136
+        y: 54
+        width: 407
+        height: 297
+      alignment: 9
+      pivot: {x: 0.9321349, y: 0.71627605}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe10c318144984880800000000000000
+      internalID: -8626482077166206481
       vertices: []
       indices: 
       edges: []
