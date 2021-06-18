@@ -16,6 +16,7 @@ public class Dialog : MonoBehaviour
     public Transform Marie;
     int count;
 
+    public AudioSource NPCsound; // sound declarer for NPC's
 
     private void Start()
     {
@@ -79,6 +80,8 @@ public class Dialog : MonoBehaviour
             SpeechBox.enabled = true;
             blackScreen.enabled = true;
 
+            NPCsound.Play();
+
             if (Marie.GetComponent<MarieController>().equipSpray)
             {
                 Marie.GetComponent<MarieController>().equipSpray = false;
@@ -103,6 +106,8 @@ public class Dialog : MonoBehaviour
                 textDisplay.gameObject.SetActive(false);
                 SpeechBox.enabled = false;
                 blackScreen.enabled = false;
+
+                
             }
         }
         catch(System.Exception e)

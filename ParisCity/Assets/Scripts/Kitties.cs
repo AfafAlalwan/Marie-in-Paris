@@ -15,6 +15,8 @@ public class Kitties : MonoBehaviour
     public float attackRange, attackDelay;
     private float lastAttack;
 
+    public AudioSource BadKitten;
+
     private void Awake()
     {
         currentHP = maxHP;
@@ -47,6 +49,8 @@ public class Kitties : MonoBehaviour
         //Marie takes damgae from cats one hit is 20
         Marie.GetComponent<MarieController>().HP.ReduceHealth(30);
         Marie.GetComponent<MarieController>().animator.SetTrigger("Smacked");
+
+        BadKitten.Play();
 
     }
     public void GetSmacked(int intdamage)
