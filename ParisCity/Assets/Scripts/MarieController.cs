@@ -60,7 +60,7 @@ public class MarieController : MonoBehaviour
 
         //starting position 
         gm = GameObject.FindGameObjectWithTag("gameMaster").GetComponent<GameMaster>();
-        transform.position = gm.lastCheckPointPos;
+        //transform.position = gm.lastCheckPointPos;
 
         wallJumpAngle.Normalize();
     }

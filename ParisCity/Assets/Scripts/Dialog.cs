@@ -91,16 +91,23 @@ public class Dialog : MonoBehaviour
     
     private void OnTriggerExit2D(Collider2D other)
     {
-        ReliableOnTriggerExit.NotifyTriggerExit(other, gameObject);
-
-        if (other.gameObject.tag == "Marie")
+        try
         {
-            triggering = false;
-            continueE.text = " ";
-            continueE.gameObject.SetActive(false);
-            textDisplay.gameObject.SetActive(false);
-            SpeechBox.enabled = false;
-            blackScreen.enabled = false;
+            ReliableOnTriggerExit.NotifyTriggerExit(other, gameObject);
+
+            if (other.gameObject.tag == "Marie")
+            {
+                triggering = false;
+                continueE.text = " ";
+                continueE.gameObject.SetActive(false);
+                textDisplay.gameObject.SetActive(false);
+                SpeechBox.enabled = false;
+                blackScreen.enabled = false;
+            }
+        }
+        catch(System.Exception e)
+        {
+            Debug.Log("meow");
         }
     }
 
