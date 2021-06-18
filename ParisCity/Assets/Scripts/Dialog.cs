@@ -14,6 +14,7 @@ public class Dialog : MonoBehaviour
     public Image SpeechBox, blackScreen;
     bool triggering;
     public Transform Marie;
+    int count;
 
 
     private void Start()
@@ -29,7 +30,18 @@ public class Dialog : MonoBehaviour
        
         if (Input.GetKeyDown(KeyCode.E) && triggering && !Marie.GetComponent<MarieController>().equipSpray)
         {
+            StopAllCoroutines();
+            textDisplay.text = "";
             NextSentence();
+            count++;
+        }
+
+        if(this.gameObject.tag == "Pierre")
+        {
+            if(count > 9)
+            {
+                Marie.GetComponent<MarieController>().isGliding = true;
+            }
         }
     }
     IEnumerator Type()

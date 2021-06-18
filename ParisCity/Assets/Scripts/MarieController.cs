@@ -6,12 +6,10 @@ using UnityEngine.SceneManagement;
 public class MarieController : MonoBehaviour
 {
     private GameMaster gm;
-    SpriteRenderer _renderer;
     Rigidbody2D _rb;
-
     public HealthSystem HP;
     public Transform Paws;
-    public LayerMask GroundLayer;
+
     //Animation code
     public Animator animator;
 
@@ -23,25 +21,24 @@ public class MarieController : MonoBehaviour
     public bool canAttack = false;
     public bool equipSpray = false;
 
-    //for pushing
+    //For pushing
     public float PushDistance = 1f;
     public LayerMask PushMask;
     GameObject box;
     RaycastHit2D hit;
 
-
-    //for jumping
+    //For jumping
+    public LayerMask GroundLayer;
     public float jumpForce;
     bool isGrounded;
 
-    // for running 
-    private float moveInput;
+    //For movement 
+    private float moveInputX, moveInputY;
     private float runSpeed = 5f;
     public float maxSpeed = 10f;
     public float AirSpeed = 30f;
 
     //For wall jump 
-
     public LayerMask wallLayer;
     public Transform wallCheck;
     public Vector2 wallCheckSize;
@@ -52,13 +49,13 @@ public class MarieController : MonoBehaviour
     public float wallJumpDirection = -1f;
     public Vector2 wallJumpAngle;
 
-    //   public PhysicsMaterial2D slipperyJam;
+    //For gliding
+    public bool isGliding = false;
+    public float fallSpeed;
+    public Transform Pierre;
 
-    //for gliding
-    bool isGliding;
     void Start()
     {
-        _renderer = GetComponent<SpriteRenderer>();
         _rb = GetComponent<Rigidbody2D>();
 
         //starting position 
@@ -73,38 +70,38 @@ public class MarieController : MonoBehaviour
     {
         MoveMarie();
         CheckPoint();
-
     }
 
     void CheckPoint()
     {
         if (HP.currentHealth == 0)
         {
-         //   SceneManager.LoadScene(1); //active scene
-            HP.currentHealth = 90; //was 100
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            HP.currentHealth = 90; 
         }
     }
 
     void MoveMarie()
     {
-        moveInput = Input.GetAxisRaw("Horizontal");
+        moveInputX = Input.GetAxisRaw("Horizontal");
+        moveInputY = Input.GetAxisRaw("Vertical");
 
         if (isGrounded)
         {
-            _rb.velocity = new Vector2(moveInput * runSpeed, _rb.velocity.y);
+            _rb.velocity = new Vector2(moveInputX * runSpeed, _rb.velocity.y);
         }
-        else if (!isGrounded && !isWallSliding && moveInput != 0)
+        else if (!isGrounded && !isWallSliding && moveInputX != 0)
         {
-            _rb.AddForce(new Vector2(moveInput * AirSpeed, 0));
+            _rb.AddForce(new Vector2(moveInputX * AirSpeed, 0));
             if (Mathf.Abs(_rb.velocity.x) > runSpeed)
             {
-                _rb.velocity = new Vector2(moveInput * runSpeed, _rb.velocity.y);
+                _rb.velocity = new Vector2(moveInputX * runSpeed, _rb.velocity.y);
 
             }
         }
 
 
-        if (moveInput > 0)
+        if (moveInputX > 0)
         {
             if (!Input.GetKey(KeyCode.P))
             {
@@ -118,7 +115,7 @@ public class MarieController : MonoBehaviour
                 runSpeed += Time.deltaTime;
             }
         }
-        else if (moveInput < 0)
+        else if (moveInputX < 0)
         {
             if (!Input.GetKey(KeyCode.P))
             {
@@ -134,7 +131,7 @@ public class MarieController : MonoBehaviour
             }
         }
 
-        if (moveInput == 0)
+        if (moveInputX == 0)
         {
             runSpeed = 5f;
             animator.SetBool("Running", false);
@@ -143,7 +140,6 @@ public class MarieController : MonoBehaviour
 
         //Jumping
         isGrounded = Physics2D.OverlapCircle(Paws.position, 0.2f, GroundLayer);
-
 
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
@@ -154,6 +150,11 @@ public class MarieController : MonoBehaviour
             SoundManager.PlaySound("Jump"); // JUMP SOUND ******
         }
 
+        //For gliding
+        if(isGliding)
+        {
+            _rb.velocity = new Vector2(_rb.velocity.x, moveInputY * fallSpeed);
+        }
 
         //Press Space to attack
         if (Time.time >= fnextSmack)
@@ -180,11 +181,11 @@ public class MarieController : MonoBehaviour
 
         hit = hit1;
 
-        if (moveInput > 0)
+        if (moveInputX > 0)
         {
             hit = hit1;
         }
-        else if (moveInput < 0)
+        else if (moveInputX < 0)
         {
             hit = hit2;
         }
@@ -224,7 +225,7 @@ public class MarieController : MonoBehaviour
             Debug.Log("meow");
         }
 
-        //wall jump code
+        //Wall jump code
         isTouchingWall = Physics2D.OverlapBox(wallCheck.position, wallCheckSize, 0, wallLayer);
 
         if (isTouchingWall && !isGrounded && _rb.velocity.y < 0)
@@ -244,20 +245,22 @@ public class MarieController : MonoBehaviour
 
         if ((isWallSliding || isTouchingWall) && Input.GetKeyDown(KeyCode.W))
         {
-            _rb.AddForce(new Vector2(wallJumpForce * wallJumpDirection * wallJumpAngle.x, wallJumpForce * wallJumpAngle.y), ForceMode2D.Impulse);
+            _rb.AddForce(new Vector2(wallJumpForce * wallJumpDirection * wallJumpAngle.x, 
+                wallJumpForce * wallJumpAngle.y), ForceMode2D.Impulse);
         }
 
-
-
         //For gliding
-        //not complete
-        if(!isGrounded && isGliding)
+        if(isGliding)
         {
-            _rb.gravityScale = 0.5f;
+            Destroy(Pierre.gameObject);
+            animator.SetBool("Glide", true);
+
+            if (_rb.velocity.y < 0f && Mathf.Abs(_rb.velocity.y) > fallSpeed)
+                _rb.velocity = new Vector2(_rb.velocity.x, Mathf.Sign(_rb.velocity.y) * fallSpeed);
         }
         else
         {
-            _rb.gravityScale = 1.4f;
+            animator.SetBool("Glide", false) ;
         }
 
     }
@@ -266,24 +269,20 @@ public class MarieController : MonoBehaviour
     {
         if (other.gameObject.tag == "Car")
         {
-            SceneManager.LoadScene(2);
-            HP.ReduceHealth(90); // was 100
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            HP.ReduceHealth(90); 
             Destroy(other.gameObject);
         }
 
-        if(other.gameObject.tag == "Pierre")
+        if(other.gameObject.tag == "DeathZone")
         {
-            isGliding = true;
-        }
-        else
-        {
-            isGliding = false;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            HP.ReduceHealth(90);
         }
 
         if(other.gameObject.tag == "Spray")
         {
             Destroy(other.gameObject);
-            //sth to indicate that she has the spray
             equipSpray = true;
         }
 
@@ -293,25 +292,22 @@ public class MarieController : MonoBehaviour
 
         }
 
-
     }
 
     //Player Attacking Code
     void Baguattack()
     {
         //Attack Range
-        // specific code for checking what to collide. We can use layers so attack only collides with enemy layers.
-        // Basicaly Marie chooses what to smack
-        Collider2D[] smack = Physics2D.OverlapCircleAll(BaguettePos.position, fBaguetteRange, LayerMask.GetMask("Enemy"));
-
+        Collider2D[] smack = Physics2D.OverlapCircleAll(BaguettePos.position,
+            fBaguetteRange, LayerMask.GetMask("Enemy"));
         //Damage
-        foreach (Collider2D enemy in smack) //it will smack each person that is count as enemy in the reach parameter we made in attack range section
+        foreach (Collider2D enemy in smack) 
         {
-            enemy.GetComponent<Kitties>().GetSmacked(25); //change getsmacked to change dmg number. Kitties are enemy cats.
+            enemy.GetComponent<Kitties>().GetSmacked(25); 
         }
     }
 
-    //a shpere for attacking range
+    //A shpere for attacking range
     private void OnDrawGizmosSelected()
     {
         if (BaguettePos == null)

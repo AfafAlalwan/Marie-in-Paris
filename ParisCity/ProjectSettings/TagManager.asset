@@ -18,6 +18,7 @@ TagManager:
   - Spray
   - Raphael
   - Fidel
+  - DeathZone
   layers:
   - Default
   - TransparentFX
