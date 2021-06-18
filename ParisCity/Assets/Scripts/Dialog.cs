@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Dialog : MonoBehaviour
 {
@@ -10,19 +11,23 @@ public class Dialog : MonoBehaviour
     public string[] sentences;
     private int index;
     public float typingSpeed;
-
+    public Image SpeechBox, blackScreen;
     bool triggering;
+    public Transform Marie;
+
 
     private void Start()
     {
         StartCoroutine(Type());
         continueE.text = " ";
+        SpeechBox.enabled = false;
+        blackScreen.enabled = false;
     }
 
     void Update()
     {
        
-        if (Input.GetKeyDown(KeyCode.E) && triggering)
+        if (Input.GetKeyDown(KeyCode.E) && triggering && !Marie.GetComponent<MarieController>().equipSpray)
         {
             NextSentence();
         }
@@ -59,7 +64,15 @@ public class Dialog : MonoBehaviour
             continueE.gameObject.SetActive(true);
             continueE.text = "Press E to continue...";
             textDisplay.gameObject.SetActive(true);
-            Debug.Log("Meow");
+            SpeechBox.enabled = true;
+            blackScreen.enabled = true;
+
+            if (Marie.GetComponent<MarieController>().equipSpray)
+            {
+                Marie.GetComponent<MarieController>().equipSpray = false;
+                Marie.GetComponent<MarieController>().canAttack = true;
+
+            }
         }
     }
 
@@ -74,6 +87,8 @@ public class Dialog : MonoBehaviour
             continueE.text = " ";
             continueE.gameObject.SetActive(false);
             textDisplay.gameObject.SetActive(false);
+            SpeechBox.enabled = false;
+            blackScreen.enabled = false;
         }
     }
 

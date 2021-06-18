@@ -46,6 +46,7 @@ public class Kitties : MonoBehaviour
         
         //Marie takes damgae from cats one hit is 20
         Marie.GetComponent<MarieController>().HP.ReduceHealth(30);
+        Marie.GetComponent<MarieController>().animator.SetTrigger("Smacked");
 
     }
     public void GetSmacked(int intdamage)

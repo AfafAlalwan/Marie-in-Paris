@@ -9,17 +9,19 @@ public class MarieController : MonoBehaviour
     SpriteRenderer _renderer;
     Rigidbody2D _rb;
 
-    //  public HealthBar HP;
     public HealthSystem HP;
     public Transform Paws;
     public LayerMask GroundLayer;
     //Animation code
     public Animator animator;
-    //Weapon Code
+
+    //For attack
     public Transform BaguettePos;
     public float fBaguetteRange = 0.5f;
     public float fsmackRate = 3f;
     float fnextSmack = 0f;
+    public bool canAttack = false;
+    public bool equipSpray = false;
 
     //for pushing
     public float PushDistance = 1f;
@@ -78,7 +80,7 @@ public class MarieController : MonoBehaviour
     {
         if (HP.currentHealth == 0)
         {
-            SceneManager.LoadScene(0);
+         //   SceneManager.LoadScene(1); //active scene
             HP.currentHealth = 90; //was 100
         }
     }
@@ -104,7 +106,7 @@ public class MarieController : MonoBehaviour
 
         if (moveInput > 0)
         {
-            if (!Input.GetKey(KeyCode.P) || !isWallSliding)
+            if (!Input.GetKey(KeyCode.P))
             {
                 transform.eulerAngles = new Vector3(0, 0, 0);
                 wallJumpAngle *= -1f;
@@ -118,7 +120,7 @@ public class MarieController : MonoBehaviour
         }
         else if (moveInput < 0)
         {
-            if (!Input.GetKey(KeyCode.P) || !isWallSliding)
+            if (!Input.GetKey(KeyCode.P))
             {
                 transform.eulerAngles = new Vector3(0, 180, 0);
                 wallJumpAngle *= -1f;
@@ -153,13 +155,12 @@ public class MarieController : MonoBehaviour
         }
 
 
-        //If you press Space button it should attack with this code
+        //Press Space to attack
         if (Time.time >= fnextSmack)
         {
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space) && canAttack)
             {
                 Baguattack();
-                //Attack Animation Trigger Code (Trigger so it doesn't loop)
                 animator.SetTrigger("Baguattack");
 
                 SoundManager.PlaySound("Hit"); // HIT SOUND ***
@@ -246,14 +247,10 @@ public class MarieController : MonoBehaviour
             _rb.AddForce(new Vector2(wallJumpForce * wallJumpDirection * wallJumpAngle.x, wallJumpForce * wallJumpAngle.y), ForceMode2D.Impulse);
         }
 
-      /*  if (!isTouchingWall || !isWallSliding)
-        {
-            // GetComponent<Renderer>(). = slipperyJam;
 
-        } */
 
         //For gliding
-        
+        //not complete
         if(!isGrounded && isGliding)
         {
             _rb.gravityScale = 0.5f;
@@ -269,12 +266,12 @@ public class MarieController : MonoBehaviour
     {
         if (other.gameObject.tag == "Car")
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
             HP.ReduceHealth(90); // was 100
             Destroy(other.gameObject);
         }
 
-        if(other.gameObject.tag == "Bird")
+        if(other.gameObject.tag == "Pierre")
         {
             isGliding = true;
         }
@@ -283,7 +280,19 @@ public class MarieController : MonoBehaviour
             isGliding = false;
         }
 
-      
+        if(other.gameObject.tag == "Spray")
+        {
+            Destroy(other.gameObject);
+            //sth to indicate that she has the spray
+            equipSpray = true;
+        }
+
+        if(other.gameObject.tag == "Finish")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+        }
+
 
     }
 
@@ -322,8 +331,6 @@ public class MarieController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawCube(wallCheck.position, wallCheckSize);
     }
-    //Code for unused Animation take it from here if you fix it
-    // animator.SetTrigger("Smacked");  
 
 
 }

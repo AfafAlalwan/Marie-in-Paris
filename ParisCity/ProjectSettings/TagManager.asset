@@ -14,6 +14,10 @@ TagManager:
   - Pushable
   - Ellie
   - NPC
+  - Pierre
+  - Spray
+  - Raphael
+  - Fidel
   layers:
   - Default
   - TransparentFX
@@ -62,4 +66,7 @@ TagManager:
     locked: 0
   - name: Foreground2
     uniqueID: 847284619
+    locked: 0
+  - name: Canvas
+    uniqueID: 985438481
     locked: 0
